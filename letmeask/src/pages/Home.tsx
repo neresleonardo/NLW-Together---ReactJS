@@ -16,7 +16,7 @@ import '../styles/auth.scss';
 export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth()
-  const [roomCode, setRoomCode] = useState('');
+  const [roomCode, setRoomCode] = useState(''); //amazenando codigo da sala
 
   async function handleCreateRoom() {
     if (!user) {
@@ -26,20 +26,23 @@ export function Home() {
     history.push('/rooms/new');
   }
 
+  // Função para entrar em uma sala
   async function handleJoinRoom(event: FormEvent) {
     event.preventDefault();
 
+    // Codigo da sala
     if (roomCode.trim() === '') {
       return;
     }
 
-    const roomRef = await database.ref(`rooms/${roomCode}`).get();
+    const roomRef = await database.ref(`rooms/${roomCode}`).get(); // bascando registro
 
+    // Caso retorne falso
     if (!roomRef.exists()) {
       alert('Room does not exists.');
       return;
     }
-
+    //Sala
     if (roomRef.val().endedAt) {
       alert('Room already closed.');
       return;

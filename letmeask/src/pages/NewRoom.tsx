@@ -16,7 +16,7 @@ export function NewRoom() {
   const [newRoom, setNewRoom] = useState('');
 
   async function handleCreateRoom(event: FormEvent) {
-    event.preventDefault();
+    event.preventDefault(); // Para a tela não ficar atualizando
 
     if (newRoom.trim() === '') {
       return;
@@ -24,12 +24,13 @@ export function NewRoom() {
 
     const roomRef = database.ref('rooms');
 
+    // Salvando os dados
     const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
     })
 
-    history.push(`/rooms/${firebaseRoom.key}`)
+    history.push(`/rooms/${firebaseRoom.key}`) // Redirecionando rota ao criar a sala
   }
 
   return (

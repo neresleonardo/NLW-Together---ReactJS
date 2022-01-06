@@ -1,7 +1,7 @@
-export function NewRoom() {
+export function NotFound() {
     return(
         <div>
-            Not Found
+          <h1>  Not Found</h1> 
         </div>
     )
 }
