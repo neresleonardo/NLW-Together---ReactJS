@@ -12,14 +12,14 @@ function App() {
   return (
     <BrowserRouter>
       <AuthContextProvider>
-          <Switch>
+        <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/rooms/new" exact component={NewRoom} />
           <Route path="/rooms/:id" component={Room} />
           <Route component={NotFound} />
-          </Switch>
+        </Switch>
 
-       
+
       </AuthContextProvider>
     </BrowserRouter>
   );
